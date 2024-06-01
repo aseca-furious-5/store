@@ -29,6 +29,10 @@ function App() {
 
     const makeOrder = async () => {
         const order = await postOrder({ items: cart });
+        if (!order) {
+            alert("Order failed, not enough stock for some of the items.");
+            return;
+        }
         setOrder(order);
         setCart([]);
     };

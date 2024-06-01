@@ -16,6 +16,8 @@ export const postOrder = async (order) => {
         const response = await axios.post(`${CONTROL_TOWER_URL}/order`, order);
         return response.data;
     } catch (error){
+        if (error.statusCode === 409)
+            return null;
         console.error("Error while posting order", error);
     }
 };
